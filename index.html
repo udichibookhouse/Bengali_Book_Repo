@@ -3,92 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aura — Minimalist Library & E-Reader</title>
-  <meta name="description" content="A clean, distraction-free reading sanctuary. Read classic literature page-by-page in a premium customizable space.">
+  <title>Ideas From Taijasa — Books and Reader</title>
+  <meta name="description" content="A book showcase and e-reader shell for multiple titles, built as a clean author-style website.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body data-theme="light">
+  <header class="site-header">
+    <a class="site-brand" href="#home" aria-label="Ideas From Taijasa home">
+      <span class="brand-mark">IFT</span>
+      <span class="brand-text">
+        <strong>Ideas From Taijasa</strong>
+        <small>Books and Reader</small>
+      </span>
+    </a>
 
-  <!-- Main App Header -->
-  <header class="app-header">
-    <div class="logo">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10"/></svg>
-      <span>AURA</span>
-    </div>
-    <div class="header-controls">
-      <div class="search-container">
-        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" id="search-bar" class="search-input" placeholder="Search books, authors...">
-      </div>
-      <button class="theme-selector-btn" id="header-theme-toggle" title="Cycle Themes">
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#books">Books</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-tools">
+      <button class="theme-selector-btn" id="header-theme-toggle" title="Cycle themes" aria-label="Cycle themes">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
       </button>
     </div>
   </header>
 
-  <!-- Library Homepage View -->
-  <main class="main-content" id="library-view">
-    <section class="hero">
-      <h1>Unwind. Read. Reflect.</h1>
-      <p>A minimalist sanctuary for public domain classics. Engage with texts page-by-page, tailored precisely to your reading style.</p>
+  <main id="home">
+    <section class="hero-shell">
+      <div class="hero-copy">
+        <p class="eyebrow">A reading space for multiple books</p>
+        <h1>Books first. Reader second.</h1>
+        <p class="hero-lede">A clean author-style homepage for showcasing several books, opening any title into a focused reader, and keeping the shelf easy to scan.</p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#books">Browse books</a>
+          <a class="secondary-link" href="#featured-book">View featured title</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel" id="featured-book">
+        <span class="panel-label">Featured title</span>
+        <div class="featured-book" id="featured-book-card">
+          <!-- Injected dynamically -->
+        </div>
+      </aside>
     </section>
 
-    <!-- Genre Tags Filter -->
-    <div class="filter-bar" id="genre-filters">
-      <button class="filter-btn active" data-genre="all">All Library</button>
-      <button class="filter-btn" data-genre="fiction">Fiction</button>
-      <button class="filter-btn" data-genre="fantasy">Fantasy</button>
-      <button class="filter-btn" data-genre="philosophy">Philosophy</button>
-    </div>
+    <section class="section-shell section-tools">
+      <div class="section-heading">
+        <p class="eyebrow">Browse the shelf</p>
+        <h2>Find a title and open the reader.</h2>
+      </div>
+      <div class="reader-tools">
+        <div class="search-container">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="search-bar" class="search-input" placeholder="Search books, authors...">
+        </div>
+        <div class="filter-bar" id="genre-filters" aria-label="Book filters">
+          <button class="filter-btn active" data-genre="all">All books</button>
+          <button class="filter-btn" data-genre="fiction">Fiction</button>
+          <button class="filter-btn" data-genre="fantasy">Fantasy</button>
+          <button class="filter-btn" data-genre="philosophy">Philosophy</button>
+        </div>
+      </div>
+    </section>
 
-    <!-- Books Grid -->
-    <div class="library-grid" id="library-grid">
-      <!-- Injected dynamically by app.js -->
-    </div>
+    <section class="section-shell" id="books">
+      <div class="section-heading">
+        <p class="eyebrow">Books</p>
+        <h2>Available titles</h2>
+      </div>
+      <div class="library-grid" id="library-grid"></div>
+    </section>
+
+    <section class="section-shell about-shell" id="about">
+      <div class="section-heading">
+        <p class="eyebrow">About</p>
+        <h2>A simple home for book discovery and reading.</h2>
+      </div>
+      <div class="about-grid">
+        <p>This layout is meant to feel like a literary author site: spacious, direct, and built around the books themselves. Each title can be browsed from the shelf and then opened into the existing reader overlay.</p>
+        <p>The same shell can hold many books, make a featured title prominent, and keep the experience calm for readers who want to move quickly from discovery to reading.</p>
+      </div>
+    </section>
+
+    <section class="section-shell contact-shell" id="contact">
+      <div class="section-heading">
+        <p class="eyebrow">Contact</p>
+        <h2>Keep this area for updates, links, or a newsletter.</h2>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <span class="contact-label">Website</span>
+          <strong>ideasfromtaijasa.com</strong>
+        </div>
+        <div>
+          <span class="contact-label">Reading mode</span>
+          <strong>Fullscreen, paginated, bookmarkable</strong>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Fullscreen Distraction-Free Reader Overlay -->
   <div class="reader-overlay" id="reader-view">
-    
-    <!-- Reader Header -->
     <header class="reader-top-bar">
       <div class="reader-meta">
         <button class="back-btn" id="exit-reader">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-          Library
+          Shelf
         </button>
         <span class="reader-book-title" id="reader-title-label">Book Title</span>
         <span class="reader-chapter-title" id="reader-chapter-label">Chapter I</span>
       </div>
-      
+
       <div class="reader-actions">
-        <!-- Bookmark Current Page -->
-        <button class="reader-action-btn" id="bookmark-toggle-btn" title="Bookmark current page (Key: B)">
+        <button class="reader-action-btn" id="bookmark-toggle-btn" title="Bookmark current page (Key: B)" aria-label="Bookmark current page">
           <svg id="bookmark-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
         </button>
-        <!-- Open Contents and Saved Bookmarks drawer -->
-        <button class="reader-action-btn" id="open-contents-btn" title="Chapters & Bookmarks">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x12="21" y1="6" y2="6"/><line x1="3" x12="21" y1="12" y2="12"/><line x1="3" x12="21" y1="18" y2="18"/></svg>
+        <button class="reader-action-btn" id="open-contents-btn" title="Chapters & Bookmarks" aria-label="Chapters and bookmarks">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
         </button>
-        <!-- Open Style Customizer Settings drawer -->
-        <button class="reader-action-btn" id="open-settings-btn" title="Reader Settings">
+        <button class="reader-action-btn" id="open-settings-btn" title="Reader Settings" aria-label="Reader settings">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         </button>
       </div>
     </header>
 
-    <!-- Reading Area Workspace -->
     <div class="reader-workspace">
-      <!-- Floating Navigation Arrows -->
       <button class="nav-arrow prev" id="prev-page-btn" aria-label="Previous Page">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
       </button>
-      
+
       <div class="reader-container" id="reader-container">
         <div class="reader-viewport">
-          <div class="reader-content font-serif size-md height-relaxed" id="reader-content">
-            <!-- Text rendered and paginated dynamically by app.js -->
-          </div>
+          <div class="reader-content font-serif size-md height-relaxed" id="reader-content"></div>
         </div>
       </div>
 
@@ -97,7 +146,6 @@
       </button>
     </div>
 
-    <!-- Reader Bottom controls -->
     <footer class="reader-bottom-bar">
       <div class="progress-slider-container">
         <input type="range" class="reader-progress-slider" id="reader-slider" min="0" max="0" value="0">
@@ -106,16 +154,14 @@
     </footer>
   </div>
 
-  <!-- Style Settings Drawer -->
   <aside class="drawer" id="settings-drawer">
     <div class="drawer-header">
       <h3>Reader Settings</h3>
-      <button class="drawer-close" id="close-settings-btn">
+      <button class="drawer-close" id="close-settings-btn" aria-label="Close reader settings">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
       </button>
     </div>
     <div class="drawer-content">
-      <!-- Theme Dot Picker -->
       <div class="setting-group">
         <span class="setting-label">Theme</span>
         <div class="setting-options">
@@ -125,7 +171,6 @@
           <div class="theme-dot dot-forest" data-theme-val="forest" title="Forest Theme"></div>
         </div>
       </div>
-      <!-- Font Family -->
       <div class="setting-group">
         <span class="setting-label">Font Style</span>
         <div class="setting-options" id="font-options">
@@ -135,16 +180,14 @@
           <button class="btn-option" data-font="mono">Mono</button>
         </div>
       </div>
-      <!-- Font Size Adjuster -->
       <div class="setting-group">
         <span class="setting-label">Font Size</span>
         <div class="setting-options">
-          <button class="btn-option" id="font-dec-btn" style="flex-grow:0; width:50px;">A-</button>
-          <button class="btn-option" id="font-inc-btn" style="flex-grow:0; width:50px;">A+</button>
-          <span id="font-size-label" style="align-self: center; margin-left:15px; font-size:0.9rem;">Medium</span>
+          <button class="btn-option" id="font-dec-btn">A-</button>
+          <button class="btn-option" id="font-inc-btn">A+</button>
+          <span id="font-size-label" class="font-size-label">Medium</span>
         </div>
       </div>
-      <!-- Layout Width -->
       <div class="setting-group">
         <span class="setting-label">Reading Width</span>
         <div class="setting-options" id="width-options">
@@ -153,7 +196,6 @@
           <button class="btn-option" data-width="wide">Wide</button>
         </div>
       </div>
-      <!-- Line Height -->
       <div class="setting-group">
         <span class="setting-label">Line Spacing</span>
         <div class="setting-options" id="height-options">
@@ -165,11 +207,10 @@
     </div>
   </aside>
 
-  <!-- Chapters & Bookmarks Drawer -->
   <aside class="drawer" id="contents-drawer">
     <div class="drawer-header">
       <h3>Book Details</h3>
-      <button class="drawer-close" id="close-contents-btn">
+      <button class="drawer-close" id="close-contents-btn" aria-label="Close contents">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
       </button>
     </div>
@@ -178,24 +219,14 @@
       <button class="tab-btn" id="tab-bookmarks-btn">Bookmarks</button>
     </div>
     <div class="drawer-content">
-      <!-- Chapters list panel -->
-      <div class="tab-panel active" id="panel-chapters">
-        <!-- Injected dynamically by app.js -->
-      </div>
-      <!-- Bookmarks list panel -->
-      <div class="tab-panel" id="panel-bookmarks">
-        <!-- Injected dynamically by app.js -->
-      </div>
+      <div class="tab-panel active" id="panel-chapters"></div>
+      <div class="tab-panel" id="panel-bookmarks"></div>
     </div>
   </aside>
 
-  <!-- Overlay Glassy Backdrop -->
   <div class="backdrop" id="drawer-backdrop"></div>
-
-  <!-- Toast Alert -->
   <div class="toast" id="toast-message">Bookmark added</div>
 
-  <!-- Scripts -->
   <script type="module" src="app.js"></script>
 </body>
 </html>

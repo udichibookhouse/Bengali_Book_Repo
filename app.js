@@ -200,6 +200,29 @@ function updateDrawerSettingsUI() {
 
 // Render library grid based on filters and search
 function renderLibrary() {
+  const featured = BOOKS[0];
+  const featuredProgress = bookProgress[featured.id] || { chapterIndex: 0, pageIndex: 0, percent: 0 };
+  const featuredStat = featuredProgress.percent > 0 ? `${featuredProgress.percent}% read` : 'Start here';
+
+  if (document.getElementById('featured-book-card')) {
+    document.getElementById('featured-book-card').innerHTML = `
+      <img class="featured-cover" src="${featured.cover}" alt="${featured.title} cover" loading="eager">
+      <div class="featured-copy">
+        <span class="book-genre">${featured.genre}</span>
+        <h3>${featured.title}</h3>
+        <p class="book-author">by ${featured.author}</p>
+        <p>${featured.description}</p>
+        <div class="featured-meta">
+          <span>${featuredStat}</span>
+          <button class="read-btn" data-book-id="${featured.id}">
+            ${featuredProgress.percent > 0 ? 'Resume' : 'Read now'}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
   el.libraryGrid.innerHTML = '';
   
   const activeGenreFilter = document.querySelector('.filter-btn.active').getAttribute('data-genre').toLowerCase();
@@ -257,12 +280,19 @@ function renderLibrary() {
     `;
     
     // Clicking anywhere on the card (except footer actions or descriptions maybe) opens reader
-    card.addEventListener('click', (e) => {
+    card.addEventListener('click', () => {
       openReader(book.id);
     });
     
     el.libraryGrid.appendChild(card);
   });
+
+  if (filteredBooks.length > 1) {
+    const shelfHeading = document.createElement('div');
+    shelfHeading.className = 'shelf-note';
+    shelfHeading.textContent = `Showing ${filteredBooks.length} books`;
+    el.libraryGrid.prepend(shelfHeading);
+  }
 }
 
 // Open Reader view
@@ -283,6 +313,7 @@ function openReader(bookId) {
   // Update view classes
   document.body.style.overflow = 'hidden'; // Stop background scrolling
   el.readerView.classList.add('active');
+  closeAllDrawers();
   
   // Load current chapter
   loadChapter(activeChapterIndex, activePage);
@@ -608,6 +639,13 @@ function setupEventListeners() {
   // Search
   el.searchBar.addEventListener('input', () => {
     renderLibrary();
+  });
+
+  document.addEventListener('click', (e) => {
+    const button = e.target.closest('.read-btn');
+    if (!button) return;
+    const bookId = button.getAttribute('data-book-id');
+    if (bookId) openReader(bookId);
   });
   
   // Theme Toggle in Header
